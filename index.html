@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./img/favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Company Directory</title>
+</head>
+<body>
+    <div id="preloader">
+        <p class="mt-5">Loading... <img src="./img/loading.gif" alt=""></p>
+    </div>
+    <main>
+    <nav>
+        <h1>Company Directory</h1>
+            <div class="searching d-flex justify-content-center">
+                <input class="form-control" id="searchFor" type="text" placeholder="Search...">
+                <button id="searchButton">Search</button>
+            </div>
+            
+            <div class="btnHolder">
+                <button class="buttons hide" id="showAllEmployee">Personnel</button>
+                <button class="addEmployee buttons buttonManage">Add employee</button>
+                <button class="buttons" id="showAllDepartments"> Departments</button>
+                <button class="buttons hide buttonManage" id="showEditDeptModal">Add department</button>
+                <button class="buttons" id="showAllLocations">Locations</button>
+                <button class="buttons hide buttonManage" id="showEditLocModal">Add location</button>
+                </div>
+    </nav>
+
+
+    <div class="mainTable personnelTable">
+        <table class="table table-striped personnelTable">
+            <thead>
+                <tr>
+                <th class="medium" scope="col" id="lastName">Last&nbsp;Name </th>
+                <th class="medium" scope="col" id="firstName">First&nbsp;Name </th>
+                <th scope="col" class="hide650 long" id="email">Email </th>
+                <th scope="col" class="hide1200 medium" id="jobTitle">Job Title </th>
+                <th scope="col" class="hide950 long" id="department">    <select name="department" class="selectDepartment" id="selectDepartment"></select> </th>
+                <th scope="col" class="hide950 medium" id="location">    <select name="location" class="selectLocation medium" id="selectLocation"></select>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="mainTable">
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="mainTable hide departmentTable">
+        <table class="table table-striped departmentTable">
+            <thead>
+                <tr>
+                <th class="medium" scope="col" id="deptTableDept">Department</th>
+                <th class="medium" scope="col" id="deptTableLoc">Location</th>
+                <th scope="col" class="long" id="deptTableEmployee">Employee(s)</th>
+            </tr>
+            </thead>
+            <tbody id="mainTableDepartment">
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="mainTable hide locationTable">
+        <table class="table table-striped locationTable">
+            <thead>
+                <tr>
+                <th class="medium" scope="col" id="locTableLoc">Location</th>
+                <th class="medium" scope="col" id="locTableDept">Department(s)</th>
+                <th scope="col" class="long" id="locTableEmployee">Employee(s)</th>
+            </tr>
+            </thead>
+            <tbody id="mainTableLocation">
+            </tbody>
+        </table>
+    </div>
+
+
+  <!-- Modal Employee Info -->
+  <div class="modal fade" id="employeeInfo" tabindex="-1" aria-labelledby="employeeInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <p id="employeeInfoLabel"></p>
+        </div>
+        <form id="saveEditedEmployee">
+            <div class="modal-body">
+                        <input id="employeeIdInfo"  name="employeeIdInfo" type="text">
+                <div class="d-flex justify-content-between">
+                    <label for="firstNameInfo">First name</label>
+                    <div>
+                        <input class="form-control" id="firstNameInfo" name="firstNameInfo" type="text" disabled required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="lastNameInfo">Last name</label>
+                    <div>
+                        <input class="form-control" id="lastNameInfo" name="lastNameInfo" type="text" disabled required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="emailInfo">Email</label>
+                    <div>
+                        <input class="form-control" id="emailInfo" name="emailInfo" type="email" disabled required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="jobTitleInfo">Job title</label>
+                    <div>
+                        <input class="form-control" id="jobTitleInfo" name="jobTitleInfo" type="text" disabled>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="departmentInfo">Departament</label>
+                    <div>
+                        <select class="form-control" id="departmentInfo" name="departmentInfo" type="text" disabled> </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="locationInfo">Location</label>
+                    <div>
+                        <select class="form-control" id="locationInfo" name="locationInfo" type="text" disabled></select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary btn-employee mt-5" id="editEmployee">Edit</button>
+                    <button type="button" class="btn btn-danger btn-employee mt-5" id="deleteEmployee">Delete</button>
+                    <button type="submit" class="btn btn-warning hide btn-employee mt-5" id="saveEmployee">Save</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-employee" data-dismiss="modal">Close</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal Add Employee -->
+  <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="addEmployeeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <p id="addEmployeeLabel">Add new Employee</p>
+        </div>
+        <div class="modal-body">
+            <form id="addNewEmployee">
+                <div class="d-flex justify-content-between">
+                    <label for="addFirstName">First name</label>
+                    <div>
+                        <input class="form-control" id="addFirstName" name="addFirstName" type="text" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="addLastName">Last name</label>
+                    <div>
+                        <input class="form-control" id="addLastName" name="addLastName" type="text" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="addEmail">Email</label>
+                    <div>                        
+                        <input class="form-control" id="addEmail" name="addEmail" type="email">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="addJobTitle">Job title</label>
+                    <div>
+                        <input class="form-control" id="addJobTitle" name="addJobTitle" type="text">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="addEmployeeDepartment">Departament</label>
+                    <div>
+                        <select class="form-control" name="addEmployeeDepartment" id="addEmployeeDepartment"></select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="addEmployeeLocation">Location</label>
+                    <div>
+                        <select class="form-control" name="addEmployeeLocation" id="addEmployeeLocation" disabled></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="submit" id="saveNewEmployee" class="btn btn-success" >Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  <!-- Modal Departments -->
+  <div class="modal fade" id="manageDepartmentsModal" tabindex="-1" role="dialog" aria-labelledby="manageDepartmentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+            <form id="saveEditedDepartment2">
+                <input class="hide" type="text" id="deptModalLocId">
+                <label for="department">Department</label>
+                <input class="form-control mb-5" name="department" type="text" disabled id="deptModalDept">
+                <input class="hide" type="text" id="deptModalDeptId">
+                <label for="location">Location</label>
+                <select class="form-control mb-5" name="location" id="deptModalLoc" disabled></select>
+                <label for="employee">Employee(s)</label>
+                <input class="form-control mb-5" name="employee" type="text" disabled id="deptModalEmployees">
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary mt-5" id="editDepartment">Edit</button>
+                    <button class="btn btn-warning hide mt-5" type="submit" id="saveDepartment">Save</button>
+                    <button class="btn btn-danger mt-5" id="deleteDepartment">Delete</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal Location-->
+<div class="modal fade" id="manageLocationsModal" tabindex="-1" role="dialog" aria-labelledby="manageLocationsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form id="saveEditedLocation">
+                    <label for="location">Location name</label>
+                    <input class="form-control mb-5" name="location" type="text" disabled id="locModalLoc">
+                    <input class="hide" type="text" id="locModalLocId">
+                    <label for="department">Departments</label>
+                    <input class="form-control mb-5" name="department" type="text" disabled id="locModalDept">
+                    <!-- <textarea disabled name="department" id="locModalDept"></textarea> -->
+                    <label for="employee">Employee(s)</label>
+                    <input class="form-control mb-5" name="employee" type="text" disabled id="locModalEmployees">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary mt-5" id="editLocation">Edit</button>
+                        <button class="btn btn-warning hide mt-5" type="submit" id="saveLocation">Save</button>
+                        <button class="btn btn-danger mt-5" id="deleteLocation">Delete</button>
+                    </div>
+        </form>       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Modal Add Location -->
+  <div class="modal fade" id="addLocation" tabindex="-1" aria-labelledby="addLocationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <p id="addLocationLabel">Add new location</p>
+        </div>
+        <form id="addNewLocation">
+        <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                    <label for="location">New location</label>
+                    <input class="form-control" type="text" id="locationToAdd" required>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="submit" id="" class="btn btn-success" >Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+  </div>
+  </div>
+
+  <!-- Modal Add Department -->
+  <div class="modal fade" id="addDepartment" tabindex="-1" aria-labelledby="addDepartmentLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <p id="addDepartmentLabel">Add new Department</p>
+        </div>
+        <form id="addNewDepartment">
+        <div class="modal-body">
+            <div class="d-flex justify-content-between">
+                <label for="department">New Department</label>
+                <input class="form-control" name="department" type="text" id="departmentToAdd" required>
+            </div>
+            <div class="d-flex justify-content-between">
+                <label for="location">Location</label>
+                <select class="form-control" name="location" id="addDepartmentLocation"></select>
+            </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="submit" id="" class="btn btn-success" >Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+  </div>
+  </div>
+</main>
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/javaScript.js"></script>
+</body>
+</html>
+
+

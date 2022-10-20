@@ -1,0 +1,342 @@
+html {
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+    // background-image: url(../img/a.jpg);
+    background-color: #fff;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #fff;
+}
+
+
+#preloader{
+    p{
+        font-size: 6rem;
+        text-align: center;
+        line-height: 100vh;
+    }
+    img{
+        height: 6rem;
+    }
+}
+
+
+main{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+
+table {
+    margin: 0 auto;
+    width: 90vw;
+}
+
+
+th {
+    font-weight: bold;
+    font-size: 2rem;
+    position: sticky;
+    top: 0;
+    background-color: darkgray !important;
+}
+
+
+td {
+    font-size: 1.8rem;
+}
+
+#employeeIdInfo{
+    display: none;
+}
+
+td, th{
+    line-height: 150%;
+    padding: 0.6rem;
+    // text-align: center; 
+    vertical-align: middle;
+}
+
+
+nav{
+    h1{
+        font-size: 5rem;
+        text-align: center;
+        margin: 2rem;
+    }
+    .searching{
+        text-align: center !important;
+        input, button {
+            margin: 1rem;
+            font-size: 2rem;
+            // width: 30rem;
+        }
+        input{
+            width: 30rem;
+        }
+    }
+
+    .btnHolder{
+        .buttonManage{
+            background-color: #90cdf0;
+        }
+        button{
+            font-size: 2rem;
+            margin: 1.5rem;
+            background-color: #b4f5ba;
+            padding: 1rem 0;
+            width: 18rem;
+        }
+        text-align: center;
+    }
+    .selects{
+        font-size: 2rem;
+        margin: 0 2rem;
+    }
+}
+
+
+    .table-row-personnel:hover {
+        background-color: #b4f5ba !important;
+        cursor: pointer;
+    }
+    .table-row-department:hover {
+        background-color: #b4f5ba !important;
+        cursor: pointer;
+    }
+    .table-row-location:hover {
+        background-color: #b4f5ba !important;
+        cursor: pointer;
+    }
+
+
+.mainTable{
+    max-height: calc(100vh - 250px);
+    overflow: auto;
+    border: 2px solid darkgray;
+    background-color: #fff;
+    margin: 0 2rem;
+}
+
+
+.hide{
+    display: none;
+}
+
+
+.modal{
+    label, input, select, i, button{
+        margin: 0.5rem;
+        font-size: 2rem;
+    }
+}
+
+
+// #selectDepartment2, #selectLocation2{
+//     display: none;
+// }
+
+
+#employeeInfo, #addEmployee, #addDepartment, #addLocation, #manageLocationsModal, #manageDepartmentsModal{
+    label, input, i, select{
+    font-size: 1.6rem;
+    padding: 0.4rem;
+    margin: 0.4rem;
+    }
+    input, select{
+        width: 30rem;
+    }
+    .btn {
+        width: 33%;
+    }
+}
+
+
+#addLocation{
+    input{
+        width: 30rem;
+    }
+    label{
+        font-size: 2rem;
+    }
+}
+
+
+
+#manageLocationsModal, #manageDepartmentsModal {
+
+    label{
+        // font-weight: bold;
+        font-size: 2.4rem;
+    }
+    input, textarea, select{
+        width: 99%;
+        // word-break: keep-all;
+    };
+    textarea{
+        margin: 0.5rem;
+        font-size: 2rem;
+        white-space: pre-wrap;
+    }
+    
+}
+
+
+#employeeInfoLabel, #addEmployeeLabel, #addLocation, #addDepartment{
+    font-size: 3rem;
+}
+
+.swal2-title{
+    font-size: 3rem !important;
+}
+
+
+.swal2-html-container, .swal2-confirm, .swal2-cancel{
+    font-size: 2rem !important;
+}
+
+
+input:focus {
+    background-color: #b4f5ba !important;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .hide1200 {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 1050px) {
+    .hide950 {
+        display: none;
+    }
+    .mainTable{
+        max-height: calc(100vh - 300px);
+    }
+
+    #selectDepartment2, #selectLocation2 {
+        display: block;
+        margin: 1rem 0;
+    }
+    #selectDepartment2{
+        width: 50%;
+    }
+    #selectLocation2{
+        width: 30%;
+    }
+
+}
+
+
+@media only screen and (max-width: 650px) {
+    .hide650 {
+        display: none;
+    }
+        nav{
+        h1{
+            font-size: 4rem;
+        }
+        .searching{
+            text-align: center;
+            input, button {
+                margin: 0.5rem;
+                font-size: 1.6rem;
+            }
+        }
+        .btnHolder{
+            button{
+                font-size: 1.6rem;
+                margin: 0.5rem;
+                background-color: #b4f5ba;
+                padding: 0.5rem 0;
+                width: 15rem;
+            }
+           
+        }
+        .selects{
+            font-size: 1.7rem;
+            margin: 0 2rem;
+        }
+    }
+    #preloader{
+        p{
+            font-size: 4rem;
+        }
+        img{
+            height: 4rem;
+        }
+    }
+
+
+    .mainTable{
+        max-height: calc(100vh - 290px);
+    }
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    #employeeInfo, #addEmployee, #addLocation, #addDepartment{
+        input, select{
+            width: 200px;
+        }
+    }
+    #selectDepartment2{
+        width: 59%;
+    }
+    #selectLocation2{
+        width: 39%;
+    }
+    nav{
+        .btnHolder{
+            button{
+                width: 60%;
+                font-size: 1.4rem;
+            }
+        }
+        input{
+            width: 20rem !important;
+    }
+    }
+    .mainTable{
+        max-height: calc(100vh - 320px);
+    }
+
+}
+
+
+@media only screen and (max-width: 374px){
+    html {
+        font-size: 6px;
+    }
+    #employeeInfo, #addEmployee{
+        input, select{
+            width: 150px;
+        }
+    }
+    .mainTable{
+        max-height: calc(100vh - 200px);
+    }
+    nav{
+        .searching{
+            input{
+                width: 40%;
+            }
+        }
+}
+}
